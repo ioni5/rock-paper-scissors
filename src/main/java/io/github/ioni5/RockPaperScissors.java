@@ -1,14 +1,26 @@
 package io.github.ioni5;
 
-public class RockPaperScissors 
-{
+public class RockPaperScissors {
+
+    private static final int MIN_PLAYERS = 1;
+
+    private static final int MAX_PLAYERS = 2;
+
     private Player[] players;
 
-    public RockPaperScissors() {
-        players = new Player[] {
-            new Player("Jugador1"),
-            new Player("Jugador2")
-        };
+    public RockPaperScissors(int numPlayers) {
+        assert isValidNumPlayers(numPlayers);
+        if (numPlayers == MIN_PLAYERS) {
+            players = new Player[] {
+                new HumanPlayer("Jugador1"),
+                new RobotPlayer("Mr. Roboto")
+            };
+        } else {
+            players = new Player[] {
+                new HumanPlayer("Jugador1"),
+                new HumanPlayer("Jugador2")
+            };
+        }
     }
 
     public void start() {
@@ -32,5 +44,9 @@ public class RockPaperScissors
 
     private boolean hasWinner() {
         return !players[0].isSameShape(players[1]);
+    }
+
+    public static boolean isValidNumPlayers(int numPlayers) {
+        return numPlayers == MIN_PLAYERS || numPlayers == MAX_PLAYERS;
     }
 }

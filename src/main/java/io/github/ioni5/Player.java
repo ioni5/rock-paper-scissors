@@ -1,12 +1,12 @@
 package io.github.ioni5;
 
-public class Player {
+public abstract class Player {
 
-    private static final String SHAPES[] = {"PIEDRA", "PAPEL", "TIJERA"};
+    protected static final String SHAPES[] = {"PIEDRA", "PAPEL", "TIJERA"};
 
-    private String name;
+    protected String name;
 
-    private String shape;
+    protected String shape;
 
     public Player(String name) {
         this.name = name;
@@ -16,24 +16,9 @@ public class Player {
         return name;
     }
 
-    public void play() {
-        shape = this.obtainShape();
-    }
+    public abstract void play();
 
-    private String obtainShape() {
-        boolean error = false;
-        do {
-            Console console = new Console();
-            shape = console.read("\nJuega " + name + ": ");
-            error = !this.isValidShape(shape);
-            if (error) {
-                console.write("\nError: jugada no valida.");
-            }
-        } while (error);
-        return shape;
-    }
-
-    private boolean isValidShape(String shape) {
+    protected boolean isValidShape(String shape) {
         for (String validShape : SHAPES) {
             if (shape.equalsIgnoreCase(validShape)) {
                 return true;
