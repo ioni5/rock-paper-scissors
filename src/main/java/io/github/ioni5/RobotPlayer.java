@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class RobotPlayer extends Player {
 
-    public RobotPlayer(String name) {
-        super(name);
+    public RobotPlayer(int number) {
+        super("Maquina" + number);
     }
 
     @Override
