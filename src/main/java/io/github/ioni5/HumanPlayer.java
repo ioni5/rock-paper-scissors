@@ -2,8 +2,8 @@ package io.github.ioni5;
 
 public class HumanPlayer extends Player {
 
-    public HumanPlayer(String name) {
-        super(name);
+    public HumanPlayer(int number) {
+        super("Jugador" + number);
     }
 
     @Override
